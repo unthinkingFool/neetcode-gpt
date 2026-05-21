@@ -13,6 +13,7 @@ class Solution:
         # Compute mean squared error between predictions and ground truth
         # Round to 5 decimal places
 
+        # the array is like (n*1) size ----> we need to flatten this to get 1D array
         temp_arr=(model_prediction-ground_truth).flatten()
         ans=np.dot(temp_arr,temp_arr)
         ans=ans/model_prediction.shape[0]
