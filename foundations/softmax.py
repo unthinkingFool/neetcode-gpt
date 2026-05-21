@@ -9,8 +9,12 @@ class Solution:
         # Hint: subtract max(z) for numerical stability before computing exp
         # return np.round(your_answer, 4)
         
+        """ why? --> there can be overflow for large values like : exp(1000) : so 
+         instead of taking the larger values we are just calculating with the 
+         relative values ( relative to the maximum value of z)
+        
+        """
         arrNew=z-np.max(z)
-
 
         denom=0
         for i in range(z.shape[0]):
