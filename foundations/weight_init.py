@@ -30,8 +30,7 @@ class Solution:
 
     def check_activations(self, num_layers: int, input_dim: int, hidden_dim: int, init_type: str) -> List[float]:
         torch.manual_seed(0)
-    
-        # Step 1: Build ALL weight matrices first (as problem statement says)
+        
         weights = []
         for i in range(num_layers):
             fan_in  = input_dim if i == 0 else hidden_dim
@@ -46,10 +45,10 @@ class Solution:
 
             weights.append(torch.randn(fan_out, fan_in) * std)
 
-        # Step 2: THEN generate the random input (after all weights consume the seed)
+        
         x = torch.randn(input_dim)
 
-    # Step 3: Forward pass
+
         stds = []
         for W in weights:
             x = torch.relu(W @ x)
