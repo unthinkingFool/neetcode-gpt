@@ -11,14 +11,14 @@ class Solution:
         # then compute all values at once with broadcasting (no loops needed).
         # Assign sine to even columns (PE[:, 0::2]) and cosine to odd columns (PE[:, 1::2]).
         # Round to 5 decimal places.
-        PE=np.zeros((seq_len, d_model)) 
-        angle_rates=np.zeros((seq_len, (d_model+1)//2 ))
+               
+        P = np.zeros((seq_len, d_model))
         for pos in range(seq_len):
-            for i in range((d_model+1)//2):
-                angle_rates[pos][i]=(pos/10000**(2*i/d_model))
-        
-        PE[:, 0::2] = np.sin(angle_rates)
-        PE[:, 1::2] = np.cos(angle_rates[:, :PE[:, 1::2].shape[1]])
+            for i in np.arange(int(d_model/2)):
+                denominator = np.power(10000, 2*i/d_model)
+                P[pos, 2*i] = np.sin(pos/denominator)
+                P[pos, 2*i+1] = np.cos(pos/denominator)
+ 
 
-        return np.round(PE,5)
+        return np.round(P,5)
 
