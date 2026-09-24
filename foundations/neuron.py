@@ -13,15 +13,13 @@ class Solution:
         # Sigmoid: σ(z) = 1 / (1 + exp(-z))
         # ReLU: max(0, z)
         # return round(your_answer, 5)
+        z=np.dot(x,w)+b
+        
+        transformerd=z
 
-        z=np.dot(x,w) + b
-
-        transformed=z
-
-        if activation == "sigmoid":
-            transformed=1 / (1+np.exp(-z))
-        elif activation == "relu":
-            transformed=max(0,z)
-
+        if activation=="sigmoid":
+            transformed=1/(1+np.exp(-z))
+        elif activation=="relu":
+            transformed=max(z,0)
 
         return float(np.round(transformed,5))
